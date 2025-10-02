@@ -2,28 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Minute Calculator</title>
+    <title>Simple Average Calculator</title>
 </head>
 <body>
-    <h2>Minute Calculator</h2>
-    <label for="hour">Hour:</label>
-    <input type="number" id="hour" min="0" step="1">
-    <br>
-    <label for="minute">Minute:</label>
-    <input type="number" id="minute" min="0" step="1">
-    <br>
-    <button onclick="calculateTotalMinutes()">Calculate Total Minutes</button>
-    <p id="minuteResult"></p>
+    <h2>Simple Average Calculator</h2>
+    <label for="numbers">Enter numbers (comma separated):</label>
+    <input type="text" id="numbers" placeholder="e.g. 10, 20, 30">
+    <button onclick="calculateAverage()">Calculate Average</button>
+    <p id="averageResult"></p>
     <script>
-        function calculateTotalMinutes() {
-            const hour = parseInt(document.getElementById('hour').value, 10);
-            const minute = parseInt(document.getElementById('minute').value, 10);
-            if (isNaN(hour) || isNaN(minute) || hour < 0 || minute < 0) {
-                document.getElementById('minuteResult').textContent = 'Please enter valid numbers.';
+        function calculateAverage() {
+            const input = document.getElementById('numbers').value;
+            const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+            if (nums.length === 0) {
+                document.getElementById('averageResult').textContent = 'Please enter valid numbers.';
                 return;
             }
-            const totalMinutes = hour * 60 + minute;
-            document.getElementById('minuteResult').textContent = 'Total Minutes: ' + totalMinutes;
+            const sum = nums.reduce((a, b) => a + b, 0);
+            const avg = sum / nums.length;
+            document.getElementById('averageResult').textContent = 'Average: ' + avg;
         }
     </script>
 </body>
