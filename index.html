@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Average Calculator</title>
+    <title>Find Max Value</title>
 </head>
 <body>
-    <h2>Simple Average Calculator</h2>
+    <h2>Find Max Value</h2>
     <label for="numbers">Enter numbers (comma separated):</label>
     <input type="text" id="numbers" placeholder="e.g. 10, 20, 30">
-    <button onclick="calculateAverage()">Calculate Average</button>
-    <p id="averageResult"></p>
+    <button onclick="findMax()">Find Max</button>
+    <p id="maxResult"></p>
     <script>
-        function calculateAverage() {
+        function findMax() {
             const input = document.getElementById('numbers').value;
             const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
             if (nums.length === 0) {
-                document.getElementById('averageResult').textContent = 'Please enter valid numbers.';
+                document.getElementById('maxResult').textContent = 'Please enter valid numbers.';
                 return;
             }
-            const sum = nums.reduce((a, b) => a + b, 0);
-            const avg = sum / nums.length;
-            document.getElementById('averageResult').textContent = 'Average: ' + avg;
+            const max = Math.max(...nums);
+            document.getElementById('maxResult').textContent = 'Max value: ' + max;
         }
     </script>
 </body>
