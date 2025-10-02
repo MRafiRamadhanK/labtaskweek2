@@ -5,26 +5,25 @@
     <title>Simple area  Calculator</title>
 </head>
 <body>
-    <h2>Rectangle area Calculator</h2>
-    <label for="length">Length:</label>
-    <input type="number" id="length" min="0" step="any">
+    <h2>BMI Calculator</h2>
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" min="0" step="any">
     <br>
-    <label for="width">Width:</label>
-    <input type="number" id="width" min="0" step="any">
+    <label for="height">Height (m):</label>
+    <input type="number" id="height" min="0" step="any">
     <br>
-    <button onclick="calculatearea()">Calculate area</button>
-    <p id="result"></p>
-
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <p id="bmiResult"></p>
     <script>
-        function calculatearea() {
-            const length = parseFloat(document.getElementById('length').value);
-            const width = parseFloat(document.getElementById('width').value);
-            if (isNaN(length) || isNaN(width)) {
-                document.getElementById('result').textContent = 'Please enter valid numbers.';
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            if (isNaN(weight) || isNaN(height) || height <= 0) {
+                document.getElementById('bmiResult').textContent = 'Please enter valid numbers.';
                 return;
             }
-            const area = length * width;
-            document.getElementById('result').textContent = 'area: ' + area;
+            const bmi = weight / (height * height);
+            document.getElementById('bmiResult').textContent = 'BMI: ' + bmi.toFixed(2);
         }
     </script>
 </body>
